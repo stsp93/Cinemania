@@ -111,9 +111,10 @@ header {
 /*Focus*/
 .search__btn:focus .search__icon,
 .search__field:focus,
-.nav__link:focus {
+.nav__link:focus,
+.footer-contacts a:focus {
   color: #fcc419;
-  fill: #fcc419;
+  fill: #fcc419 !important;
 }
 
 /* Movie Cards Grid*/
@@ -246,7 +247,7 @@ footer {
   width: 60rem;
   margin: 3% auto;
 }
-.overlay__description{
+.overlay__description {
   width: inherit;
   background-color: #050505e8;
   color: #ced4da;
@@ -260,10 +261,11 @@ footer {
   margin-right: 1rem;
 }
 .overlay__plot {
-  font-size:2rem;
+  font-size: 2rem;
   font-style: italic;
 }
-.actors, .genres {
+.actors,
+.genres {
   font-size: 1.8rem;
   letter-spacing: 0.1rem;
   margin-left: 0.8rem;
@@ -272,7 +274,7 @@ footer {
   margin-top: 2rem;
 }
 
-.flex{
+.flex {
   display: flex;
 }
 
@@ -282,7 +284,7 @@ footer {
   top: 0;
   transform: translate(-115%, 15%);
   background-color: #05050560;
-  filter: saturate(0%)  brightness(180%);
+  filter: saturate(0%) brightness(180%);
   border: none;
   font-weight: 700;
   font-size: 1.8rem;
@@ -291,10 +293,10 @@ footer {
   border-radius: 20rem;
   transition: all 0.3s;
 }
-.overlay__btn-close:hover{
+.overlay__btn-close:hover {
   background-color: #050505c7;
 }
-.overlay__btn-close:active{
+.overlay__btn-close:active {
   background-color: #050505;
 }
 .hidden {

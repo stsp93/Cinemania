@@ -1,11 +1,15 @@
 import * as model from './model.js';
 import resultsView from './Views/resultsView.js';
+import searchView from './Views/searchView.js';
 
-const controlMovie = async function() {
+const controlResults = async function() {
     // Load Results
-    await model.loadResults('potter');
+    await model.loadResults(searchView.getQuery());
 
     // Render Results
-    resultsView.render(model.state.results);
+    resultsView.render(model.state.search.results);
 }
-controlMovie();
+const init = function() {
+    searchView.addHandlerRender(controlResults);
+}
+init();

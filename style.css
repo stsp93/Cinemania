@@ -1,6 +1,6 @@
 /* Colors 
     Yellow-shades:#e67700,#f08c00 #fcc419,
-    Gray-shades:#212529,#495057,#868e96,#e9ecef;
+    Gray-shades:#212529,#495057,#868e96,#adb5bd,#e9ecef;
  */
 /* Size scale in rem
   font-scale: / 1.8 / 2.2
@@ -22,20 +22,22 @@ body {
   line-height: 1.6;
   color: #e9ecef;
   background-color: #050505;
+  overflow: hidden;
 }
 
 .container {
-  max-width: 130rem;
-  min-height: 100rem;
+  max-width: 140rem;
+  max-height: 100rem;
   margin: 0 auto;
 }
 main {
   position: relative;
+  margin-bottom: 10rem;
 }
 /* Header */
 header {
   margin: 0 1rem;
-  margin-bottom: 6.4rem;
+  margin-bottom: 10rem;
   background: linear-gradient(
     180deg,
     #050505 calc(50% - 0.2rem),
@@ -48,7 +50,7 @@ header {
   justify-content: space-between;
 }
 .header__logo {
-  height: 16rem;
+  height: 18rem;
   margin: 0 50%;
   transform: translate(-50%, 0);
 }
@@ -62,7 +64,7 @@ header {
   text-decoration: none;
   font-weight: 600;
   color: #868e96;
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin: 0 1rem;
   /* padding: 0 1rem; */
   transition: all 0.3s;
@@ -93,7 +95,7 @@ header {
 }
 .search__field {
   border: none;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 500;
   border-top-left-radius: 20rem;
   border-bottom-left-radius: 20rem;
@@ -120,6 +122,7 @@ header {
 /* Movie Cards Grid*/
 .cards__container {
   display: grid;
+  justify-items: center;
   gap: 2rem;
   grid-template-columns: repeat(5, 1fr);
 }
@@ -193,35 +196,37 @@ h4 {
 /*  Footer */
 footer {
   background-color: #2125293f;
+  box-shadow: 0 50vh 0 50vh #2125293f;
 }
 .footer__container {
-  max-width: 130rem;
+  max-width: 140rem;
   margin: 0 auto;
   display: flex;
-  padding: 2rem 8rem;
+  padding: 3.2rem 4rem;
   justify-content: space-between;
 }
 .footer-logo {
-  max-height: 8rem;
+  max-height: 10rem;
   margin-right: 1rem;
 }
 .footer-logo-box {
   display: flex;
+  align-items: flex-end;
 }
 .footer-contacts {
   display: flex;
   flex-direction: column;
-  font-size: 1.6rem;
-  color: #e9ecef;
+  font-size: 2rem;
+  color: #adb5bd;
 }
 .footer-contacts a {
-  color: #e9ecef;
+  color: #adb5bd;
 }
 .footer-contacts a:hover {
   color: #fcc419;
 }
 .social-network svg {
-  fill: #e9ecef;
+  fill: #adb5bd;
   max-width: 8rem;
 }
 .social-network svg:hover {

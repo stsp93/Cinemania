@@ -1,4 +1,7 @@
-class PaginationView {
+import View from "./View.js";
+
+
+class PaginationView extends View{
     _parentElement = document.querySelector('.btn__container');
     _data;
 
@@ -29,21 +32,6 @@ class PaginationView {
 
         // Current page is in the middle (<- ->)
         return this._generateLeftArrow(curPage) + this._generateRightArrow(curPage);
-    }
-
-    
-    render(data) {
-      // data = model.state.search
-        if (!data || data.length === 0) console.error('Error');;
-        this._data = data;
-
-        const markup = this._generateMarkup();
-        this._clear();
-        this._parentElement.insertAdjacentHTML('afterbegin', markup)
-    }
-
-    _clear() {
-        this._parentElement.innerHTML = ''
     }
 
     addPaginationHandler(handler) {

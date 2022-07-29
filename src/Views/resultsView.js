@@ -1,8 +1,10 @@
-class ResultsView {
+import View from "./View.js";
+
+class ResultsView  extends View{
     _parentElement = document.querySelector('.cards__container');
     _data;
     _generateMovieCard(movie) {
-        return `<li class="movie__card" style="background-image:url(${movie.image});">
+        return `<li class="movie__card" data-id="${movie.id}" style="background-image:url(${movie.image});">
         <h4 class="movie__card-title">${movie.title} ${movie.year}</h4>
       </li>`
     };
@@ -11,17 +13,14 @@ class ResultsView {
         return this._data.map(this._generateMovieCard).join('');
     }
     
-    render(data) {
-        if (!data || data.length === 0) console.error('Error');;
-        this._data = data;
 
-        const markup = this._generateMarkup();
-        this._clear();
-        this._parentElement.insertAdjacentHTML('afterbegin', markup)
-    }
-
-    _clear() {
-        this._parentElement.innerHTML = ''
+    addMovieRenderHandler(handler) {
+        this._parentElement.addEventListener('click', function(e) {
+            const movieId = e.target.closest('.movie__card').dataset.id;
+            if(!movieId) return;
+            
+            handler(movieId);
+        })
     }
 }
 export default new ResultsView();

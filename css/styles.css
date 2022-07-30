@@ -1,0 +1,47 @@
+@import url(./reset.css);
+@import url(./header.css);
+@import url(./main.css);
+@import url(./footer.css);
+@import url(./overlay.css);
+
+
+/* Colors 
+    Yellow-shades:#e67700,#f08c00 #fcc419,
+    Gray-shades:#212529,#495057,#868e96,#adb5bd,#e9ecef;
+ */
+/* Size scale in rem
+  font-scale: / 1.8 / 2.2
+  spacing: 6.4 / 8 / 
+ */
+
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #e9ecef;
+  background-color: #050505;
+}
+
+.container {
+  max-width: 140rem;
+  max-height: 100rem;
+  margin: 0 auto;
+}
+
+/*Focus*/
+.search__btn:focus .search__icon,
+.search__field:focus,
+.nav__link:focus,
+.footer-contacts a:focus {
+  color: #fcc419;
+  fill: #fcc419 !important;
+}
+
+
+
+
+

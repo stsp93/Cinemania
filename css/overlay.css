@@ -1,0 +1,77 @@
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(73, 80, 87, 0.5);
+    z-index: 5;
+    opacity: 100%;
+    transition: all 1s;
+  }
+  .overlay__container {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    background-size: cover;
+    height: 80rem;
+    width: 60rem;
+    margin: 3% auto;
+  }
+  .overlay__description {
+    width: inherit;
+    background-color: #050505e8;
+    color: #ced4da;
+    padding: 0.8rem;
+  }
+  .overlay__title {
+    font-size: 3.2rem;
+  }
+  .overlay__rating {
+    font-size: 2.4rem;
+    margin-right: 1rem;
+  }
+  .overlay__plot {
+    font-size: 2rem;
+    font-style: italic;
+  }
+  .actors,
+  .genres {
+    font-size: 1.8rem;
+    letter-spacing: 0.1rem;
+    margin-left: 0.8rem;
+  }
+  .actors {
+    margin-top: 2rem;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .overlay__btn-close {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    transform: translate(-115%, 15%);
+    background-color: #05050560;
+    filter: saturate(0%) brightness(180%);
+    border: none;
+    font-weight: 700;
+    font-size: 1.8rem;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 20rem;
+    transition: all 0.3s;
+  }
+  .overlay__btn-close:hover {
+    background-color: #495057b9;
+  }
+  .overlay__btn-close:active {
+    background-color: #050505;
+  }
+  .hidden {
+    opacity: 0%;
+    z-index: -1;
+  }

@@ -1,0 +1,79 @@
+main {
+    position: relative;
+    margin-bottom: 10rem;
+  }
+
+/* Movie Cards Grid*/
+.cards__container {
+    display: grid;
+    justify-items: center;
+    gap: 2rem;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .movie__card {
+    position: relative;
+    list-style-type: none;
+    height: 32rem;
+    width: 24rem;
+    background-size: cover;
+    transition: all 0.3s;
+  }
+  h4 {
+    letter-spacing: 0.1rem;
+  }
+  .movie__card-title {
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    /* width: inherit; */
+    transform: translate(0, -100%);
+    font-size: 2rem;
+    color: rgb(252, 196, 25);
+    padding: 0.2rem 2rem;
+    background-color: #0c0c0cac;
+    transition: all 0.3s;
+  }
+  .movie__card:hover {
+    opacity: 80%;
+    filter: contrast(120%);
+    transform: scale(105%);
+    cursor: pointer;
+  }
+  .movie__card:hover .movie__card-title {
+    opacity: 100%;
+  }
+  /* Pagination Buttons */
+  .btn {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    border: none;
+    background-color: #050505;
+    width: 10rem;
+    height: 16rem;
+    opacity: 10%;
+    transition: all 0.3s;
+  }
+  .btn:hover {
+    opacity: 70%;
+  }
+  .btn:active {
+    opacity: 100%;
+  }
+  .btn__left {
+    display: flex;
+    border-bottom-right-radius: 10rem;
+    border-top-right-radius: 10rem;
+    transform: translate(0, -50%);
+  }
+  .btn__right {
+    display: flex;
+    justify-content: end;
+    left: 100%;
+    transform: translate(-100%, -50%);
+    border-bottom-left-radius: 10rem;
+    border-top-left-radius: 10rem;
+  }
+  .icon__arrow {
+    width: 8rem;
+  }

@@ -14,7 +14,7 @@ class MovieView extends View{
         <div class="overlay__description">
           <div class="flex">
             <h3 class="overlay__title">${this._data.title || ''} ${this._data.year !== null ? '('+this._data.year+')' : ''}</h3>
-            <p class="overlay__rating">IMDB Rating⭐${this._data.imDbRating || ''}</p>
+            <p class="overlay__rating">IMDB⭐${Number(this._data.imDbRating).toFixed(1) || ''}</p>
           </div>
           <p class="details">${this._data.type !== null ? '('+ this._data.type+')' : ''}</p>
           <p class="overlay__plot">

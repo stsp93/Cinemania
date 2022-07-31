@@ -4,7 +4,9 @@ class ResultsView  extends View{
     _parentElement = document.querySelector('.cards__container');
     _data;
     _generateMovieCard(movie) {
-        return `<a href="#movie?id=${movie.id}" class="movie__card" style="background-image:url(${movie.image});">
+        // #movie?id=tt10954984
+        const id = movie.id.replace(`showtimes`, '')
+        return `<a href="#show?id=${id}" class="movie__card" style="background-image:url(${movie.image});">
         <h4 class="movie__card-title">${movie.title} ${movie.year}</h4>
       </a>`
     };

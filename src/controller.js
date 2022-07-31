@@ -8,7 +8,7 @@ import { SHOW_ON_HOMEPAGE } from './config.js';
 const controlResults = async function (type) {
     try {
         // Check routing
-        if(type === 'movie') return;
+        if(type === 'show') return;
         // Load Results
         await model.loadResults(type,searchView.getQuery());
     

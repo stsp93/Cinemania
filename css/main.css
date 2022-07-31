@@ -25,7 +25,6 @@ main {
     opacity: 0;
     position: absolute;
     top: 100%;
-    /* width: inherit; */
     transform: translate(0, -100%);
     font-size: 2rem;
     color: rgb(252, 196, 25);
@@ -41,6 +40,16 @@ main {
   }
   .movie__card:hover .movie__card-title {
     opacity: 100%;
+  }
+
+  .error{
+    display: flex;
+    align-items: center;
+    grid-column: span 5;
+    font-size: 3.2rem;
+    color: rgb(252, 196, 25);
+    height: 32rem;
+    
   }
   /* Pagination Buttons */
   .btn {

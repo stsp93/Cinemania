@@ -5,13 +5,18 @@ import paginationView from './Views/paginationView.js';
 import movieView from './Views/movieView.js';
 
 const controlResults = async function () {
-    // Load Results
-    await model.loadResults(searchView.getQuery());
-
-    // Render Results
-    resultsView.render(model.getPageResults(1));
-    // Render Pagination
-    paginationView.render(model.state.search)
+    try {
+        // Load Results
+        await model.loadResults(searchView.getQuery());
+    
+        // Render Results
+        resultsView.render(model.getPageResults(1));
+        // Render Pagination
+        paginationView.render(model.state.search);
+    } catch (err) {
+        console.error(err);
+        resultsView.renderError(err.message);
+    }
 }
 
 const controlPagination = function (gotoPage) {
@@ -24,14 +29,20 @@ const controlPagination = function (gotoPage) {
 
 }
 const controlMovie = async function(id) {
-    // Show Container
-    movieView.showContainer();
+    try{
+        // Load Results
+        await model.loadMovie(id);
+        // Render Results
+        movieView.render(model.state.movie);
+    
+        // Show Container
+        movieView.showContainer();
 
-    // Load Results
-    await model.loadMovie(id)
-    // Render Results
-    console.log(model.state.movie);
-    movieView.render(model.state.movie);
+    } catch (err) {
+        console.error(err);
+        movieView.renderError(err.message);
+    }
+    
 }
 
 const controlCloseMovie = function() {

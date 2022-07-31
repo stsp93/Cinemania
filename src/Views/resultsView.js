@@ -16,9 +16,9 @@ class ResultsView  extends View{
 
     addMovieRenderHandler(handler) {
         this._parentElement.addEventListener('click', function(e) {
-            const movieId = e.target.closest('.movie__card').dataset.id;
-            if(!movieId) return;
-            
+            const movieCard = e.target.closest('.movie__card');
+            if(!movieCard) return;
+            const movieId = movieCard.dataset.id;
             handler(movieId);
         })
     }

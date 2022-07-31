@@ -13,17 +13,17 @@ export const loadResults = async function (query) {
     try {
         const res = await fetch(`${SEARCH_MOVIE_URL}${API_KEY}/${query}`);
         const data = await res.json();
-        state.search.results = data.results.filter(mov => mov.image !== NO_PICTURE).map(mov => {
+        state.search.results = data.results.filter(res => res.image !== NO_PICTURE).map(res => {
             return {
-                id: mov.id,
-                title: mov.title,
-                image: mov.image,
-                year: mov.description.match(/[0-9]{4}/g) ? `(${mov.description.match(/[0-9]{4}/g)})` : '',
+                id: res.id,
+                title: res.title,
+                image: res.image,
+                year: res.description.match(/[0-9]{4}/g) ? `(${res.description.match(/[0-9]{4}/g)})` : '',
             }
         });
-        console.log(state.search.results);
     } catch (err) {
-        console.error(err);
+        console.log(err);
+        throw new Error('Unable to connect to server!')
     }
 }
 
@@ -34,7 +34,7 @@ export const loadMovie = async function (id) {
         state.movie = data
             
     } catch (err) {
-        console.error(err);
+        throw new Error('Unable to connect to server!');
     }
 }
 

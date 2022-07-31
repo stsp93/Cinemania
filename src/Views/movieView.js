@@ -7,23 +7,24 @@ class MovieView extends View{
     _generateMarkup() {
         return `<div
         class="overlay__container"
-        style="background-image: url(${this._data.image})"
+        style="background-image: url(${this._data.image || ''})"
       >
         <button class="overlay__btn-close">&#10060;</button>
 
         <div class="overlay__description">
           <div class="flex">
-            <h3 class="overlay__title">${this._data.title} (${this._data.year})</h3>
-            <h4 class="overlay__rating">IMDB Rating⭐${this._data.imDbRating}</h4>
+            <h3 class="overlay__title">${this._data.title || ''} (${this._data.year || ''})</h3>
+            <h4 class="overlay__rating">IMDB⭐${this._data.imDbRating || ''}</h4>
           </div>
+          <h4 class="overlay__plot">(${this._data.type || ''})</h4>
           <p class="overlay__plot">
-            ${this._data.plot}
+            ${this._data.plot || ''}
           </p>
           <p class="actors">
-            <strong>Actors:</strong> ${this._data.stars}
+            <strong>Actors:</strong> ${this._data.stars || ''}
           </p>
           <p class="genres">
-            <strong>Genres:</strong> ${this._data.genres}
+            <strong>Genres:</strong> ${this._data.genres || ''}
           </p>
         </div>
       </div>`
@@ -41,7 +42,8 @@ class MovieView extends View{
 
     addCloseBtnHandler(handler) {
         this._parentElement.addEventListener('click', function(e) {
-            const btn = e.target.closest('.overlay__btn-close');
+          // Closes when clicked outside the container or the close button
+            const btn = e.target === this ? this : e.target.closest('.overlay__btn-close') ;
             if(!btn) return;
             handler()
         })

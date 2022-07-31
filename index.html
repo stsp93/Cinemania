@@ -16,16 +16,20 @@
         <img src="img/Logo.png" alt="Cinemania logo" class="header__logo" />
         <div class="flex">
           <form class="search">
-            <input
+              <input
               type="text"
               class="search__field"
-              placeholder="Search for a movie"
-            />
-            <button class="search__btn">
-              <svg class="search__icon">
-                <use href="img/magnifier.svg#magnifier"></use>
-              </svg>
-            </button>
+              placeholder="Search for"
+              />
+              <select name="search-type" class="search__field search__select">
+                <option value="movies">Movies</option>
+                <option value="person">Person</option>
+              </select>
+              <button class="search__btn">
+                <svg class="search__icon">
+                  <use href="img/magnifier.svg#magnifier"></use>
+                </svg>
+              </button>
           </form>
           <nav class="header__nav">
             <a rel="stylesheet" href="#" class="nav__link">Top 250</a>

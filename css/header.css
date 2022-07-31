@@ -43,6 +43,8 @@ header {
   /* Search form */
   .search {
     display: flex;
+    justify-content: start;
+    width: 35%;
   }
   .search__btn {
     border: none;
@@ -63,6 +65,7 @@ header {
     border: none;
     font-size: 2.2rem;
     font-weight: 500;
+    width: 85%;
     border-top-left-radius: 20rem;
     border-bottom-left-radius: 20rem;
     background-color: #0c0c0c;
@@ -75,4 +78,9 @@ header {
     height: 2rem;
     fill: #495057;
     transition: all 0.3s;
+  }
+
+  .search__select {
+    border-radius: 0px;
+    width: 45%;
   }

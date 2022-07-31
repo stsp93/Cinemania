@@ -16,17 +16,10 @@ export const loadResults = async function (type = 'SearchTitle', query = '') {
         let data = await res.json();
         data = data.items ? data.items : data.results;
         state.search.results = data.filter(res => res.image !== NO_PICTURE).map(res => {
-            let year;
-            if(res.description) {
-                year = res.description.match(/[0-9]{4}/g) ? `(${res.description.match(/[0-9]{4}/g)})` : ''
-            } else {
-                year = `(${res.year})`;
-            }
             return {
                 id: res.id,
                 title: res.title,
                 image: res.image,
-                year: year,
             }
         });
     } catch (err) {

@@ -18,9 +18,3 @@ class ResultsView  extends View{
 }
 export default new ResultsView();
 
-/* data
-Array(10) [ {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…} ]
-​
-0: Object { id: "tt0145487", title: "Spider-Man", image: "https://imdb-api.com/images/original/MV5BZDEyN2NhMjgtMjdhNi0…MTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_Ratio0.7273_AL_.jpg", … }
-
-*/ 

@@ -45,8 +45,7 @@ const controlMovie = async function(_,id) {
     } catch (err) {
         console.error(err);
         movieView.renderError(err.message);
-    }
-    
+    }    
 }
 
 const controlCloseMovie = function() {
@@ -55,7 +54,7 @@ const controlCloseMovie = function() {
 
 const init = function () {
     window.location.hash = SHOW_ON_HOMEPAGE;
-    searchView.addHandlerRender(controlResults);
+    searchView.addSearchHandlerRender(controlResults);
     paginationView.addPaginationHandler(controlPagination);
     resultsView.addRenderHandler(controlMovie);
     movieView.addCloseBtnHandler(controlCloseMovie)

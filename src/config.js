@@ -5,4 +5,3 @@ export const RESULTS_PER_PAGE = 5;
 export const SHOW_ON_HOMEPAGE = `Top250Movies`
 export const NO_PICTURE= `https://imdb-api.com/images/original/nopicture.jpg`;
 
-// SearchTitle, InTheaters, k_gpsg7kly

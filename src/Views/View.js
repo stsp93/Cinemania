@@ -3,7 +3,7 @@ export default class View {
 
     _clear() {
         this._parentElement.innerHTML = ''
-    }
+    };
 
     render(data) {
         if (!data || data.length === 0) throw new Error('Nothing found, please try again!');
@@ -12,7 +12,14 @@ export default class View {
         const markup = this._generateMarkup();
         this._clear();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
-    }
+    };
+
+    addRenderHandler(handler) {
+        ['load', 'hashchange'].forEach(e => window.addEventListener(e, function() {
+            const [type,movieId] = window.location.hash.slice(1).split('?id=');
+            handler(type,movieId);
+        }))
+    };
 
     renderError(message = 'Something went wrong') {
         const markup = `<div class ="error"><p>${message}</p>
@@ -23,11 +30,11 @@ export default class View {
 
     showContainer() {
         this._parentElement.classList.remove('hidden');
-    }
+    };
     
     hideContainer() {
         this._parentElement.classList.add('hidden');
         this._clear();
-    }
+    };
 
 }

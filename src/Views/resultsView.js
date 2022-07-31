@@ -4,24 +4,15 @@ class ResultsView  extends View{
     _parentElement = document.querySelector('.cards__container');
     _data;
     _generateMovieCard(movie) {
-        return `<li class="movie__card" data-id="${movie.id}" style="background-image:url(${movie.image});">
+        return `<a href="#movie?id=${movie.id}" class="movie__card" style="background-image:url(${movie.image});">
         <h4 class="movie__card-title">${movie.title} ${movie.year}</h4>
-      </li>`
+      </a>`
     };
 
     _generateMarkup() {
         return this._data.map(this._generateMovieCard).join('');
     }
-    
-
-    addMovieRenderHandler(handler) {
-        this._parentElement.addEventListener('click', function(e) {
-            const movieCard = e.target.closest('.movie__card');
-            if(!movieCard) return;
-            const movieId = movieCard.dataset.id;
-            handler(movieId);
-        })
-    }
+   
 }
 export default new ResultsView();
 

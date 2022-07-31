@@ -13,17 +13,17 @@ class MovieView extends View{
 
         <div class="overlay__description">
           <div class="flex">
-            <h3 class="overlay__title">${this._data.title || ''} (${this._data.year || ''})</h3>
-            <h4 class="overlay__rating">IMDB⭐${this._data.imDbRating || ''}</h4>
+            <h3 class="overlay__title">${this._data.title || ''} ${this._data.year !== null ? '('+this._data.year+')' : ''}</h3>
+            <p class="overlay__rating">IMDB Rating⭐${this._data.imDbRating || ''}</p>
           </div>
-          <h4 class="overlay__plot">(${this._data.type || ''})</h4>
+          <p class="details">${this._data.type !== null ? '('+ this._data.type+')' : ''}</p>
           <p class="overlay__plot">
             ${this._data.plot || ''}
           </p>
-          <p class="actors">
+          <p class="details">
             <strong>Actors:</strong> ${this._data.stars || ''}
           </p>
-          <p class="genres">
+          <p class="details">
             <strong>Genres:</strong> ${this._data.genres || ''}
           </p>
         </div>

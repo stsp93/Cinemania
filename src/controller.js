@@ -3,11 +3,14 @@ import resultsView from './Views/resultsView.js';
 import searchView from './Views/searchView.js';
 import paginationView from './Views/paginationView.js';
 import movieView from './Views/movieView.js';
+import { SHOW_ON_HOMEPAGE } from './config.js';
 
-const controlResults = async function () {
+const controlResults = async function (type) {
     try {
+        // Check routing
+        if(type === 'movie') return;
         // Load Results
-        await model.loadResults(searchView.getQuery());
+        await model.loadResults(type,searchView.getQuery());
     
         // Render Results
         resultsView.render(model.getPageResults(1));
@@ -28,8 +31,9 @@ const controlPagination = function (gotoPage) {
     paginationView.render(model.state.search);
 
 }
-const controlMovie = async function(id) {
+const controlMovie = async function(_,id) {
     try{
+        if(!id) return;
         // Load Results
         await model.loadMovie(id);
         // Render Results
@@ -50,9 +54,11 @@ const controlCloseMovie = function() {
 }
 
 const init = function () {
+    window.location.hash = SHOW_ON_HOMEPAGE;
     searchView.addHandlerRender(controlResults);
     paginationView.addPaginationHandler(controlPagination);
-    resultsView.addMovieRenderHandler(controlMovie);
+    resultsView.addRenderHandler(controlMovie);
     movieView.addCloseBtnHandler(controlCloseMovie)
+    resultsView.addRenderHandler(controlResults)
 }
 init();

@@ -17,7 +17,7 @@ export default class View {
     addRenderHandler(handler) {
         window.addEventListener('hashchange', function() {
             const [details,id] = window.location.hash.slice(1).split('?id=');
-  
+            if(!details) return;
             handler(id, details);
         })
     };

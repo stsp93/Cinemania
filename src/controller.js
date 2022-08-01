@@ -11,7 +11,6 @@ const controlResults = async function (query,details) {
         //Check routing
         if(details === 'details') return;
 
-        console.log(query);
         //Save Selected Search
         model.state.search.select = searchView.getSelected();
 
@@ -29,16 +28,25 @@ const controlResults = async function (query,details) {
 }
 
 const controlNav = async function (_,query) {
+    try{
     // Check routing
     if(query === 'details') return;
 
     // change the state
     model.state.search.select = 'movie';
-    
+
     // Load results
    await model.loadNavResults(query)
+
     // Render Results 
    resultsView.render(model.getPageResults(1));
+
+   // Render Pagination
+   paginationView.render(model.state.search);
+    } catch (err) {
+        console.error(err);
+        resultsView.renderError(err.message);
+    }
 }
 
 const controlPagination = function (gotoPage) {
@@ -52,7 +60,6 @@ const controlPagination = function (gotoPage) {
 }
 const controlResultDetails = async function(id) {
     try{
-        console.log(id);
         if(!+id) return;
 
         // Load Results
@@ -74,8 +81,7 @@ const controlCloseDetails = function() {
     window.location.hash = ''
 }
 
-const init = function () {
-    
+const init = function () {  
     searchView.addSearchHandlerRender(controlResults);
     paginationView.addPaginationHandler(controlPagination);
     resultsView.addRenderHandler(controlResultDetails);

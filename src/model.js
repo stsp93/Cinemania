@@ -14,13 +14,11 @@ export const loadResults = async function (query = '') {
     try {
         const res = await fetch(`${API_URL}search/${state.search.select}${API_KEY}&query=${query}`);
         const data = await res.json();
-        state.search.results = data.results.filter(res => res.adult === false &&
-            (res.poster_path !== null ||
-                res.profile_path !== 0)).map(res => {
-                    if (state.search.select === 'movie') return movieResultProcess(res);
-                    if (state.search.select === 'person') return personResultProcess(res);
-                });
-        // console.log(state.search.results);
+        state.search.results = data.results.map(res => {
+            if (state.search.select === 'movie') return movieResultProcess(res);
+            if (state.search.select === 'person') return personResultProcess(res);
+        });
+        state.search.results = state.search.results.filter(res => !res.image.endsWith(null));
     } catch (err) {
         console.error(err);
         throw new Error('Unable to connect to server!')

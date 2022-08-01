@@ -16,7 +16,7 @@ footer {
   }
   .footer-logo-box {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
   }
   .footer-contacts {
     display: flex;
@@ -35,7 +35,7 @@ footer {
     display: flex;
     gap: 2rem;
   }
-  .social-network svg{
+  .social-network svg, .tmdb__logo{
     fill: #adb5bd;
     width: 8rem;
     height: 8rem;
@@ -44,4 +44,8 @@ footer {
   }
   .social-network svg:hover {
     fill: #fcc419 !important;
+  }
+
+  .tmdb__logo {
+    filter: contrast(15%);
   }

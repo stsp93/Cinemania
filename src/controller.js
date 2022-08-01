@@ -3,6 +3,7 @@ import resultsView from './Views/resultsView.js';
 import searchView from './Views/searchView.js';
 import paginationView from './Views/paginationView.js';
 import overlayView from './Views/overlayView.js';
+import navView from './Views/navView.js';
 
 
 const controlResults = async function (_,details) {
@@ -24,6 +25,12 @@ const controlResults = async function (_,details) {
         console.error(err);
         resultsView.renderError(err.message);
     }
+}
+
+const controlNav = async function (query) {
+   await model.loadNavResults(query)
+
+   resultsView.render(model.getPageResults(1));
 }
 
 const controlPagination = function (gotoPage) {
@@ -64,5 +71,6 @@ const init = function () {
     paginationView.addPaginationHandler(controlPagination);
     resultsView.addRenderHandler(controlResultDetails);
     overlayView.addCloseBtnHandler(controlCloseDetails)
+    navView.addNavHandler(controlNav);
 }
 init();

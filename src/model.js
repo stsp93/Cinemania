@@ -20,7 +20,6 @@ export const loadResults = async function (query = '') {
                     if (state.search.select === 'movie') return movieResultProcess(res);
                     if (state.search.select === 'person') return personResultProcess(res);
                 });
-        state.search.results = state.search.results.filter(el => !el.image.endsWith('null'));
         // console.log(state.search.results);
     } catch (err) {
         console.error(err);
@@ -28,7 +27,19 @@ export const loadResults = async function (query = '') {
     };
 };
 
-
+export const loadNavResults = async function (query = '') {
+    try {
+        const res = await fetch(`${API_URL}movie/${query}${API_KEY}`);
+        const data = await res.json();
+        state.search.results = data.results.filter(res => res.adult === false &&
+            (res.poster_path !== null ||
+                res.profile_path !== 0)).map(res => movieResultProcess(res));
+        // console.log(state.search.results);
+    } catch (err) {
+        console.error(err);
+        throw new Error('Unable to connect to server!')
+    };
+}
 
 export const loadDetails = async function (id) {
     try {
@@ -93,14 +104,15 @@ const personDataProcess = function (data) {
         image: IMAGES_URL + data.profile_path,
         born: data.birthday || '',
         died: data.deathday || '',
-        age : _calculateAge(data.birthday),
+        age: _calculateAge(data.birthday),
         birthPlace: data.place_of_birth || '',
         knownFor: data.known_for_department,
 
     }
 }
 function _calculateAge(birthday) { // birthday is a date
-    if(!birthday) return '';
-    const ageDifMs = Date.now() -new Date(birthday);
+    if (!birthday) return '';
+    const ageDifMs = Date.now() - new Date(birthday);
     const ageDate = new Date(ageDifMs); // miliseconds from epoch
-    return Math.abs(ageDate.getUTCFullYear() - 1970)}
+    return Math.abs(ageDate.getUTCFullYear() - 1970)
+}

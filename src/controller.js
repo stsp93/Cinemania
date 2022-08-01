@@ -6,11 +6,12 @@ import overlayView from './Views/overlayView.js';
 import navView from './Views/navView.js';
 
 
-const controlResults = async function (_,details) {
+const controlResults = async function (query,details) {
     try {
         //Check routing
-        if(details) return;
+        if(details === 'details') return;
 
+        console.log(query);
         //Save Selected Search
         model.state.search.select = searchView.getSelected();
 
@@ -27,7 +28,7 @@ const controlResults = async function (_,details) {
     }
 }
 
-const controlNav = async function (query) {
+const controlNav = async function (_,query) {
    await model.loadNavResults(query)
 
    resultsView.render(model.getPageResults(1));
@@ -44,7 +45,7 @@ const controlPagination = function (gotoPage) {
 }
 const controlResultDetails = async function(id) {
     try{
-        if(!id) return;
+        if(!+id) return;
 
         // Load Results
         await model.loadDetails(id);
@@ -71,6 +72,6 @@ const init = function () {
     paginationView.addPaginationHandler(controlPagination);
     resultsView.addRenderHandler(controlResultDetails);
     overlayView.addCloseBtnHandler(controlCloseDetails)
-    navView.addNavHandler(controlNav);
+    navView.addRenderHandler(controlNav);
 }
 init();

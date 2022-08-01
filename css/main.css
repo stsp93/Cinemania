@@ -1,6 +1,7 @@
 main {
     position: relative;
     margin-bottom: 10rem;
+    height: 100%;
   }
 
 /* Movie Cards Grid*/

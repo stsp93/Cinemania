@@ -5,18 +5,17 @@ import paginationView from './Views/paginationView.js';
 import overlayView from './Views/overlayView.js';
 import navView from './Views/navView.js';
 
-
-const controlResults = async function (query,details) {
+const controlResults = async function (query, details) {
     try {
         //Check routing
-        if(details === 'details') return;
+        if (details === 'details') return;
 
         //Save Selected Search
         model.state.search.select = searchView.getSelected();
 
         // Load Results
         await model.loadResults(searchView.getQuery());
-    
+
         // Render Results
         resultsView.render(model.getPageResults(1));
 
@@ -29,32 +28,32 @@ const controlResults = async function (query,details) {
         console.error(err);
         resultsView.renderError(err.message);
     }
-}
+};
 
-const controlNav = async function (_,query) {
-    try{
-    // Check routing
-    if(query === 'details') return;
+const controlNav = async function (_, query) {
+    try {
+        // Check routing
+        if (query === 'details') return;
 
-    // change the state
-    model.state.search.select = 'movie';
+        // change the state
+        model.state.search.select = 'movie';
 
-    // Load results
-   await model.loadNavResults(query)
+        // Load results
+        await model.loadNavResults(query)
 
-    // Activate nav link
-    navView.activateNavLink(query);
+        // Activate nav link
+        navView.activateNavLink(query);
 
-    // Render Results 
-   resultsView.render(model.getPageResults(1));
+        // Render Results 
+        resultsView.render(model.getPageResults(1));
 
-   // Render Pagination
-   paginationView.render(model.state.search);
+        // Render Pagination
+        paginationView.render(model.state.search);
     } catch (err) {
         console.error(err);
         resultsView.renderError(err.message);
     }
-}
+};
 
 const controlPagination = function (gotoPage) {
 
@@ -64,31 +63,34 @@ const controlPagination = function (gotoPage) {
     // Render Pagination
     paginationView.render(model.state.search);
 
-}
-const controlResultDetails = async function(id) {
-    try{
-        if(!+id) return;
-
+};
+const controlResultDetails = async function (id) {
+    try {
+        if (!+id) return;
         // Load Results
         await model.loadDetails(id);
         // Render Results
         overlayView.render(model.state.resultDetails);
-    
+
         // Show Container
         overlayView.showContainer();
 
     } catch (err) {
         console.error(err);
         overlayView.renderError(err.message);
-    }    
-}
+    }
+};
 
-const controlCloseDetails = function() {
+const controlCloseDetails = function () {
     overlayView.hideContainer();
     window.location.hash = ''
-}
+};
 
-const init = function () {  
+
+
+const init = function () {
+    model.mediaQueries()
+    window.location.hash = '';
     searchView.addSearchHandlerRender(controlResults);
     paginationView.addPaginationHandler(controlPagination);
     resultsView.addRenderHandler(controlResultDetails);

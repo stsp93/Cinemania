@@ -5,7 +5,7 @@ export const state = {
     search: {
         results: [],
         page: 1,
-        resultsPerPage: RESULTS_PER_PAGE,
+        resultsPerPage: 0,
         select: '',
     },
 };
@@ -58,7 +58,7 @@ export const loadDetails = async function (id) {
 export const getPageResults = function (page = state.search.page) {
     state.search.page = +page;
     const startIndex = page - 1;
-    const endIndex = startIndex + RESULTS_PER_PAGE;
+    const endIndex = startIndex + state.search.resultsPerPage;
     return state.search.results.slice(startIndex, endIndex);
 };
 
@@ -113,4 +113,23 @@ function _calculateAge(birthday) { // birthday is a date
     const ageDifMs = Date.now() - new Date(birthday);
     const ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970)
+}
+
+export const mediaQueries = function () {
+    const mediaQueries = [
+        '(max-width: 37em)',
+        '(max-width: 50em)',
+        '(max-width: 60em)',
+        '(max-width: 71em)']
+
+        for(let i = 0; i < mediaQueries.length; i++){
+            const match = window.matchMedia(mediaQueries[i]);
+            if(match.matches) {
+                console.log(match);
+                state.search.resultsPerPage = i + 1;
+                console.log(state.search.resultsPerPage);
+                break;
+            } ;
+            state.search.resultsPerPage = RESULTS_PER_PAGE;
+        }
 }

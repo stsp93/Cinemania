@@ -7,24 +7,21 @@ class MovieView extends View{
     _generateMarkup() {
         return `<div
         class="overlay__container"
-        style="background-image: url(${this._data.image || ''})"
+        style="background-image: url(${this._data.image})"
       >
         <button class="overlay__btn-close">&#10060;</button>
 
         <div class="overlay__description">
           <div class="flex">
-            <h3 class="overlay__title">${this._data.title || ''} ${this._data.year !== null ? '('+this._data.year+')' : ''}</h3>
-            <p class="overlay__rating">IMDB⭐${Number(this._data.imDbRating).toFixed(1) || ''}</p>
+            <h3 class="overlay__title">${this._data.title} ${this._data.year !== null ? '('+this._data.year+')' : ''}</h3>
+            <p class="overlay__rating">Rating⭐${this._data.rating}/10</p>
           </div>
-          <p class="details">${this._data.type !== null ? '('+ this._data.type+')' : ''}</p>
+          <p class="details">${this._data.runtime}</p>
           <p class="overlay__plot">
-            ${this._data.plot || ''}
+            ${this._data.plot}
           </p>
           <p class="details">
-            <strong>Actors:</strong> ${this._data.stars || ''}
-          </p>
-          <p class="details">
-            <strong>Genres:</strong> ${this._data.genres || ''}
+            <strong>Genres:</strong> ${this._data.genre}
           </p>
         </div>
       </div>`

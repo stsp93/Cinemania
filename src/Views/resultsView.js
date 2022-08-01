@@ -3,16 +3,15 @@ import View from "./View.js";
 class ResultsView  extends View{
     _parentElement = document.querySelector('.cards__container');
     _data;
-    _generateMovieCard(movie) {
-        // #movie?id=tt10954984
-        const id = movie.id.replace(`showtimes`, '')
-        return `<a href="#show?id=${id}" class="movie__card" style="background-image:url(${movie.image});">
-        <h4 class="movie__card-title">${movie.title} ${movie.year}</h4>
+    _generateCard(data) {
+        const id = data.id
+        return `<a href="#show?id=${id}" class="movie__card" style="background-image:url(${data.image});">
+        <h4 class="movie__card-title">${data.title} (${data.year || data.knownFor})</h4>
       </a>`
     };
 
     _generateMarkup() {
-        return this._data.map(this._generateMovieCard).join('');
+        return this._data.map(this._generateCard).join('');
     }
    
 }

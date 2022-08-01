@@ -8,6 +8,9 @@ class SearchView  extends View{
         this._clearInput();
         return query
     }
+    getSelected() {
+        return this._parentElement.querySelector('.search__select').value;
+    }
     _clearInput() {
         this._parentElement.querySelector('.search__field').value = ''
     }
@@ -15,8 +18,7 @@ class SearchView  extends View{
     addSearchHandlerRender(handler){
         this._parentElement.addEventListener('submit', function(e) {
             e.preventDefault();
-            const selected = this.querySelector('.search__select').value;
-            handler(selected);
+            handler();
         })
     }
 

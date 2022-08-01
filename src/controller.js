@@ -3,14 +3,17 @@ import resultsView from './Views/resultsView.js';
 import searchView from './Views/searchView.js';
 import paginationView from './Views/paginationView.js';
 import movieView from './Views/movieView.js';
-import { SHOW_ON_HOMEPAGE } from './config.js';
 
-const controlResults = async function (type) {
+const controlResults = async function () {
     try {
-        // Check routing
-        if(type === 'show') return;
+        //Check routing
+        // if(type === 'show') return;
+
+        //Save Selected Search
+        model.state.search.select = searchView.getSelected();
+
         // Load Results
-        await model.loadResults(type,searchView.getQuery());
+        await model.loadResults(searchView.getQuery());
     
         // Render Results
         resultsView.render(model.getPageResults(1));
@@ -53,11 +56,10 @@ const controlCloseMovie = function() {
 }
 
 const init = function () {
-    window.location.hash = SHOW_ON_HOMEPAGE;
     searchView.addSearchHandlerRender(controlResults);
     paginationView.addPaginationHandler(controlPagination);
     resultsView.addRenderHandler(controlMovie);
-    movieView.addCloseBtnHandler(controlCloseMovie)
     resultsView.addRenderHandler(controlResults)
+    movieView.addCloseBtnHandler(controlCloseMovie)
 }
 init();

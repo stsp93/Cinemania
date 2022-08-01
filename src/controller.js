@@ -29,8 +29,15 @@ const controlResults = async function (query,details) {
 }
 
 const controlNav = async function (_,query) {
-   await model.loadNavResults(query)
+    // Check routing
+    if(query === 'details') return;
 
+    // change the state
+    model.state.search.select = 'movie';
+    
+    // Load results
+   await model.loadNavResults(query)
+    // Render Results 
    resultsView.render(model.getPageResults(1));
 }
 
@@ -45,6 +52,7 @@ const controlPagination = function (gotoPage) {
 }
 const controlResultDetails = async function(id) {
     try{
+        console.log(id);
         if(!+id) return;
 
         // Load Results

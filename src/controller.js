@@ -2,12 +2,13 @@ import * as model from './model.js';
 import resultsView from './Views/resultsView.js';
 import searchView from './Views/searchView.js';
 import paginationView from './Views/paginationView.js';
-import movieView from './Views/movieView.js';
+import overlayView from './Views/overlayView.js';
 
-const controlResults = async function () {
+
+const controlResults = async function (_,details) {
     try {
         //Check routing
-        // if(type === 'show') return;
+        if(details) return;
 
         //Save Selected Search
         model.state.search.select = searchView.getSelected();
@@ -34,32 +35,34 @@ const controlPagination = function (gotoPage) {
     paginationView.render(model.state.search);
 
 }
-const controlMovie = async function(_,id) {
+const controlResultDetails = async function(id) {
     try{
         if(!id) return;
+
         // Load Results
-        await model.loadMovie(id);
+        await model.loadDetails(id);
         // Render Results
-        movieView.render(model.state.movie);
+        overlayView.render(model.state.resultDetails);
     
         // Show Container
-        movieView.showContainer();
+        overlayView.showContainer();
 
     } catch (err) {
         console.error(err);
-        movieView.renderError(err.message);
+        overlayView.renderError(err.message);
     }    
 }
 
-const controlCloseMovie = function() {
-    movieView.hideContainer();
+const controlCloseDetails = function() {
+    overlayView.hideContainer();
+    window.location.hash = ''
 }
 
 const init = function () {
+    
     searchView.addSearchHandlerRender(controlResults);
     paginationView.addPaginationHandler(controlPagination);
-    resultsView.addRenderHandler(controlMovie);
-    resultsView.addRenderHandler(controlResults)
-    movieView.addCloseBtnHandler(controlCloseMovie)
+    resultsView.addRenderHandler(controlResultDetails);
+    overlayView.addCloseBtnHandler(controlCloseDetails)
 }
 init();

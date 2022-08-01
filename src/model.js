@@ -1,7 +1,7 @@
 import { API_KEY, API_URL, IMAGES_URL, RESULTS_PER_PAGE } from "./config.js";
 
 export const state = {
-    movie: {},
+    resultDetails: {},
     search: {
         results: [],
         page: 1,
@@ -14,12 +14,11 @@ export const loadResults = async function (query = '') {
     try {
         const res = await fetch(`${API_URL}search/${state.search.select}${API_KEY}&query=${query}`);
         const data = await res.json();
-        console.log(data);
         state.search.results = data.results.filter(res => res.adult === false &&
             (res.poster_path !== null ||
                 res.profile_path !== 0)).map(res => {
-                    if(state.search.select === 'movie') return movieResultProcess(res);
-                    if(state.search.select === 'person') return personResultProcess(res);
+                    if (state.search.select === 'movie') return movieResultProcess(res);
+                    if (state.search.select === 'person') return personResultProcess(res);
                 });
         state.search.results = state.search.results.filter(el => !el.image.endsWith('null'));
         // console.log(state.search.results);
@@ -31,29 +30,21 @@ export const loadResults = async function (query = '') {
 
 
 
-export const loadMovie = async function (id) {
+export const loadDetails = async function (id) {
     try {
-        const res = await fetch(`${API_URL}${state.selected}/${id}${API_KEY}`);
+        const res = await fetch(`${API_URL}${state.search.select}/${id}${API_KEY}`);
         const data = await res.json();
-        state.movie = movieDataProcess(data);
-        console.log(state.movie);
+        state.resultDetails =
+            state.search.select === 'movie' ?
+                movieDataProcess(data) :
+                personDataProcess(data);
+        // console.log(state.resultDetails);
     } catch (err) {
         console.error(err);
         throw new Error('Unable to connect to server!');
     };
 };
 
-export const loadPerson = async function (id) {
-    try {
-        const res = await fetch(`${API_URL}movie/${id}${API_KEY}`);
-        const data = await res.json();
-        state.movie = movieDataProcess(data);
-        console.log(state.movie);
-    } catch (err) {
-        console.error(err);
-        throw new Error('Unable to connect to server!');
-    };
-};
 
 export const getPageResults = function (page = state.search.page) {
     state.search.page = +page;
@@ -64,6 +55,7 @@ export const getPageResults = function (page = state.search.page) {
 
 const movieResultProcess = function (data) {
     return {
+        type: state.search.select,
         id: data.id,
         title: data.title,
         image: IMAGES_URL + data.poster_path,
@@ -73,6 +65,7 @@ const movieResultProcess = function (data) {
 };
 const personResultProcess = function (data) {
     return {
+        type: state.search.select,
         id: data.id,
         title: data.name,
         image: IMAGES_URL + data.profile_path,
@@ -81,6 +74,7 @@ const personResultProcess = function (data) {
 };
 const movieDataProcess = function (data) {
     return {
+        type: state.search.select,
         id: data.id || '',
         title: data.title || '',
         image: IMAGES_URL + data.poster_path || '',
@@ -94,12 +88,19 @@ const movieDataProcess = function (data) {
 };
 const personDataProcess = function (data) {
     return {
+        type: state.search.select,
         name: data.name,
         image: IMAGES_URL + data.profile_path,
-        born: data.birthdate,
-        died: ' - ' + data.deathday || '',
-        birthPlace: data.place_of_birth,
+        born: data.birthday || '',
+        died: data.deathday || '',
+        age : _calculateAge(data.birthday),
+        birthPlace: data.place_of_birth || '',
         knownFor: data.known_for_department,
 
     }
 }
+function _calculateAge(birthday) { // birthday is a date
+    if(!birthday) return '';
+    const ageDifMs = Date.now() -new Date(birthday);
+    const ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970)}

@@ -15,10 +15,10 @@ export default class View {
     };
 
     addRenderHandler(handler) {
-        ['load', 'hashchange'].forEach(e => window.addEventListener(e, function() {
-            const [type,movieId] = window.location.hash.slice(1).split('?id=');
-            handler(type,movieId);
-        }))
+        window.addEventListener('hashchange', function() {
+            const [details,id] = window.location.hash.slice(1).split('?id=')
+            handler(id, details);
+        })
     };
 
     renderError(message = 'Something went wrong') {

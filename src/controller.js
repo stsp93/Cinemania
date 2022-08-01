@@ -19,6 +19,10 @@ const controlResults = async function (query,details) {
     
         // Render Results
         resultsView.render(model.getPageResults(1));
+
+        // Deactivate nav links
+        navView.deactivateNavLink();
+
         // Render Pagination
         paginationView.render(model.state.search);
     } catch (err) {
@@ -37,6 +41,9 @@ const controlNav = async function (_,query) {
 
     // Load results
    await model.loadNavResults(query)
+
+    // Activate nav link
+    navView.activateNavLink(query);
 
     // Render Results 
    resultsView.render(model.getPageResults(1));

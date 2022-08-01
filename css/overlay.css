@@ -24,6 +24,11 @@
     background-color: #050505e8;
     color: #ced4da;
     padding: 0.8rem;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .overlay__description:hover {
+    opacity: 100%;
   }
   .overlay__title {
     font-size: 3.2rem;
@@ -67,7 +72,5 @@
   .overlay__btn-close:active {
     background-color: #050505;
   }
-  .hidden {
-    opacity: 0%;
-    z-index: -1;
-  }
+  
+  

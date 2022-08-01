@@ -39,6 +39,10 @@ header {
   .nav__link:active {
     color: #fcc419;
   }
+
+  .nav__active:link {
+    text-decoration: underline;
+  }
   
   /* Search form */
   .search {

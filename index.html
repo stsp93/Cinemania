@@ -31,9 +31,9 @@
               </button>
           </form>
           <nav class="header__nav">
-            <a rel="stylesheet" href="#upcoming" class="nav__link">Upcoming</a>
-            <a rel="stylesheet" href="#top_rated" class="nav__link">Top Rated</a>
-            <a rel="stylesheet" href="#now_playing" class="nav__link">In Theaters</a>
+            <a rel="stylesheet" href="#upcoming" class="nav__link upcoming">Upcoming</a>
+            <a rel="stylesheet" href="#top_rated" class="nav__link top_rated">Top Rated</a>
+            <a rel="stylesheet" href="#now_playing" class="nav__link now_playing">In Theaters</a>
           </nav>
         </div>
       </header>
@@ -145,25 +145,21 @@
     <div class="overlay hidden">
       <!-- <div
         class="overlay__container"
-        style="background-image: url(https://filmfare.wwmindia.com/content/2022/may/thegrayman11653369596.jpg)"
+        style="background-image: url(https://m.media-amazon.com/images/M/MV5BMWEwNjhkYzYtNjgzYy00YTY2LThjYWYtYzViMGJkZTI4Y2MyXkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_FMjpg_UX1000_.jpg)"
       >
         <button class="overlay__btn-close">&#10060;</button>
 
         <div class="overlay__description">
           <div class="flex">
-            <h3 class="overlay__title">The Matrix (1999)</h3>
-            <p class="overlay__rating">IMDB Rating⭐8.7</p>
+            <h3 class="overlay__title">${this._data.name}</h3>
+            <p class="overlay__rating">Known for ${this._data.knownFor}</p>
           </div>
-          <p class="overlay__plot">(Movie)</p>
+          <p class="details">Born: ${this._data.born}</p>
+          <p class="details">${this._data.died ? `Died: ${this._data.died}` : 
+          `Age: ${this._data.age}`
+            }</p>     
           <p class="overlay__plot">
-            "The survivors of a plane crash are forced to work together in order
-            to survive on a seemingly deserted tropical island."
-          </p>
-          <p class="actors">
-            <strong>Actors:</strong> Jorge Garcia, Josh Holloway, Yunjin Kim
-          </p>
-          <p class="genres">
-            <strong>Genres:</strong> Adventure, Drama, Fantasy
+            <strong>Place of Birth</strong>: ${this._data.birthPlace}
           </p>
         </div>
       </div> -->

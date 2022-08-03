@@ -1,3 +1,5 @@
+/* Width */
+
 @media (max-width: 80em) {
   html {
     font-size: 50%;
@@ -8,6 +10,9 @@
   /* config 3 results */
   .container {
     max-width: 100rem;
+  }
+  header {
+    margin-bottom: 1rem;
   }
   .cards__container {
     grid-template-columns: repeat(4, 1fr);
@@ -38,9 +43,7 @@
     height: 44rem;
     width: 32rem;
   }
-  .overlay__container {
-    margin-top: 10%;
-  }
+
 }
 
 @media (max-width: 50em) {
@@ -50,16 +53,17 @@
   .search {
     width: 100%;
   }
-  .overlay__container {
-    margin-top: 15%;
+  .movie__card {
+    height: 48rem;
+    width: 36rem;
   }
- .footer-contacts {
+  .footer-contacts {
     font-size: 1.6rem;
- }
- .social-network a svg {
+  }
+  .social-network a svg {
     height: 4rem;
     width: 4rem;
- }
+  }
 }
 @media (max-width: 37em) {
   .cards__container {
@@ -68,22 +72,60 @@
   .movie__card {
     height: 56rem;
     width: 42rem;
-}
-.overlay__container {
+  }
+  .overlay__container {
     height: 60rem;
     width: 44rem;
-    margin-top: 25%;
   }
   .overlay__description {
     font-size: 37%;
-  }
-  .overlay__btn-close {
-    z-index: 10;
   }
   .social-network {
     align-items: center;
   }
   .footer-contacts {
     font-size: 1.4rem;
- }
+  }
+}
+
+/* Height */
+
+@media (max-height: 57.5em) and (orientation:landscape){
+  .overlay__container {
+    height: 72rem;
+    width: 60rem;
+  }
+}
+
+@media (max-height: 40.5em) {
+  .overlay__container {
+    max-height: 60rem;
+    max-width: 52rem;
+  }
+}
+
+@media (max-height: 33.5em)  and (orientation:landscape){
+  .overlay__description .flex > *{
+    font-size: 2rem;
+  }
+  .overlay__description > * {
+    font-size: 1.6rem;
+  }
+  .overlay__container {
+    height: 48rem;
+    width: 28rem;
+  }
+}
+
+@media (max-height: 28em)  and (orientation:landscape){
+  .overlay__description .flex > *{
+    font-size: 1.6rem;
+  }
+  .overlay__description > * {
+    font-size: 1.4rem;
+  }
+  .overlay__container {
+    height: 40rem;
+    width: 32rem;
+  }
 }

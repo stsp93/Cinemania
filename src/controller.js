@@ -86,15 +86,24 @@ const controlCloseDetails = function () {
     window.location.hash = ''
 };
 
+const controlResize = function() {
+    // Update Model
+    model.mediaQueries();
 
+    // Render Results
+    resultsView.render(model.getPageResults(model.state.search.page));
+
+    // Render Pagination
+    paginationView.render(model.state.search);
+} 
 
 const init = function () {
-    model.mediaQueries()
     window.location.hash = '';
     searchView.addSearchHandlerRender(controlResults);
     paginationView.addPaginationHandler(controlPagination);
     resultsView.addRenderHandler(controlResultDetails);
     overlayView.addCloseBtnHandler(controlCloseDetails)
     navView.addRenderHandler(controlNav);
+    resultsView.addResizeObserverHandler(controlResize);
 }
 init();

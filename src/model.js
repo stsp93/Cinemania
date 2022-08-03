@@ -1,4 +1,4 @@
-import { API_KEY, API_URL, IMAGES_URL, RESULTS_PER_PAGE } from "./config.js";
+import { API_KEY, API_URL, IMAGES_URL, RESULTS_PER_PAGE, MEDIA_QUERIES} from "./config.js";
 
 export const state = {
     resultDetails: {},
@@ -116,18 +116,11 @@ function _calculateAge(birthday) { // birthday is a date
 }
 
 export const mediaQueries = function () {
-    const mediaQueries = [
-        '(max-width: 37em)',
-        '(max-width: 50em)',
-        '(max-width: 60em)',
-        '(max-width: 71em)']
 
-        for(let i = 0; i < mediaQueries.length; i++){
-            const match = window.matchMedia(mediaQueries[i]);
+        for(let i = 0; i < MEDIA_QUERIES.length; i++){
+            const match = window.matchMedia(MEDIA_QUERIES[i]);
             if(match.matches) {
-                console.log(match);
                 state.search.resultsPerPage = i + 1;
-                console.log(state.search.resultsPerPage);
                 break;
             } ;
             state.search.resultsPerPage = RESULTS_PER_PAGE;

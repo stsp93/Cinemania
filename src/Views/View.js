@@ -38,4 +38,11 @@ export default class View {
         this._clear();
     };
 
+    addResizeObserverHandler = function(handler){
+        new ResizeObserver(() => {
+            handler()
+        }).observe(document.body)
+        
+    } 
+        
 }

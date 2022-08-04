@@ -12,8 +12,10 @@ export const state = {
 
 export const loadResults = async function (query = '') {
     try {
+        console.log(`${API_URL}search/${state.search.select}${API_KEY}&query=${query}`);
         const res = await fetch(`${API_URL}search/${state.search.select}${API_KEY}&query=${query}`);
         const data = await res.json();
+        console.log(data);
         state.search.results = data.results.map(res => {
             if (state.search.select === 'movie') return movieResultProcess(res);
             if (state.search.select === 'person') return personResultProcess(res);
@@ -68,8 +70,7 @@ const movieResultProcess = function (data) {
         id: data.id,
         title: data.title,
         image: IMAGES_URL + data.poster_path,
-        year: data.release_date.slice(0, 4),
-        title: data.title || res.name,
+        year: data.release_date?.slice(0, 4) || 'N/A',
     }
 };
 const personResultProcess = function (data) {
@@ -84,14 +85,14 @@ const personResultProcess = function (data) {
 const movieDataProcess = function (data) {
     return {
         type: state.search.select,
-        id: data.id || '',
-        title: data.title || '',
-        image: IMAGES_URL + data.poster_path || '',
-        plot: data.overview || '',
-        year: data.release_date.slice(0, 4) || '',
-        rating: Number(data.vote_average).toFixed(1) || '',
-        runtime: data.runtime + ' m' || '',
-        genre: data.genres.map(obj => obj.name).join(', ') || '',
+        id: data.id || 'N/A',
+        title: data.title || 'N/A',
+        image: IMAGES_URL + data.poster_path || 'N/A',
+        plot: data.overview || 'N/A',
+        year: data.release_date.slice(0, 4) || 'N/A',
+        rating: Number(data.vote_average).toFixed(1) || 'N/A',
+        runtime: (data.runtime || 'N/A') + ' m',
+        genre: data.genres.map(obj => obj.name).join(', ') || 'N/A',
     }
 
 };
@@ -100,12 +101,11 @@ const personDataProcess = function (data) {
         type: state.search.select,
         name: data.name,
         image: IMAGES_URL + data.profile_path,
-        born: data.birthday || '',
-        died: data.deathday || '',
+        born: data.birthday || 'N/A',
+        died: data.deathday,
         age: _calculateAge(data.birthday),
-        birthPlace: data.place_of_birth || '',
+        birthPlace: data.place_of_birth || 'N/A',
         knownFor: data.known_for_department,
-
     }
 }
 function _calculateAge(birthday) { // birthday is a date

@@ -63,6 +63,7 @@ main {
     width: 10rem;
     height: 16rem;
     opacity: 10%;
+    align-items: center;
     transition: all 0.3s;
   }
   .btn:hover {

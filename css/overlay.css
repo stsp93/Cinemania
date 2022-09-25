@@ -16,7 +16,8 @@
     display: flex;
     align-items: flex-end;
     position: relative;
-    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     height: 86rem;
     width: 60rem;
     margin: 3% auto;

@@ -16,7 +16,8 @@ main {
     list-style-type: none;
     height: 36rem;
     width: 24rem;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     transition: all 0.3s;
   }
   h4 {

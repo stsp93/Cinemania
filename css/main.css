@@ -8,15 +8,20 @@ main {
 .cards__container {
     display: grid;
     justify-items: center;
+    justify-content: center;
     gap: 2rem;
     grid-template-columns: repeat(5, 1fr);
   }
   .movie__card {
+    display: flex;
+    justify-content: center;
+
     position: relative;
     list-style-type: none;
     height: 36rem;
     width: 24rem;
     background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
     transition: all 0.3s;
   }
@@ -62,12 +67,12 @@ main {
     background-color: #050505;
     width: 10rem;
     height: 16rem;
-    opacity: 10%;
+    opacity: 50%;
     align-items: center;
     transition: all 0.3s;
   }
   .btn:hover {
-    opacity: 70%;
+    opacity: 75%;
   }
   .btn:active {
     opacity: 100%;

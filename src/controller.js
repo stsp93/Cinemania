@@ -4,6 +4,7 @@ import searchView from './Views/searchView.js';
 import paginationView from './Views/paginationView.js';
 import overlayView from './Views/overlayView.js';
 import navView from './Views/navView.js';
+import { LANDING_PAGE } from './config.js';
 
 const controlResults = async function (query, details) {
     try {
@@ -98,7 +99,7 @@ const controlResize = function() {
 } 
 
 const init = function () {
-    window.location.hash = '';
+    window.location.hash = LANDING_PAGE;
     searchView.addSearchHandlerRender(controlResults);
     paginationView.addPaginationHandler(controlPagination);
     resultsView.addRenderHandler(controlResultDetails);

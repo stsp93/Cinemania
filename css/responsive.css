@@ -129,3 +129,12 @@
     width: 32rem;
   }
 }
+
+@media screen and (hover: none) {
+  .overlay__description {
+    opacity: 100%;
+  }
+  .overlay__description:hover {
+    opacity: 0%;
+  }
+}
